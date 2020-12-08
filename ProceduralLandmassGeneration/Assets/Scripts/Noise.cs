@@ -35,8 +35,8 @@ public static class Noise
 
             for (var i = 0; i < octaves; i++)
             {
-                var sampleX = (x-halfWidth) / scale * frequency + octaveOffsets[i].x;
-                var sampleY = (y-halfHeight) / scale * frequency + octaveOffsets[i].y;
+                var sampleX = (x - halfWidth) / scale * frequency + octaveOffsets[i].x;
+                var sampleY = (y - halfHeight) / scale * frequency + octaveOffsets[i].y;
                 var perlinValue = Mathf.PerlinNoise(sampleX, sampleY);
                 noiseHeight += perlinValue * amplitude;
                 amplitude *= persistence;
@@ -45,7 +45,7 @@ public static class Noise
 
             if (noiseHeight > maxNoiseHeight)
                 maxNoiseHeight = noiseHeight;
-            else if (noiseHeight < minNoiseHeight)
+            else if (noiseHeight < minNoiseHeight && x != 0 && y != 0)
                 minNoiseHeight = noiseHeight;
 
             noiseMap[x, y] = noiseHeight;
